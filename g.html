@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Site Multilingue</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    .about-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 60px 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+    }
+
+    .about-content, .basic-info {
+        flex: 1;
+        min-width: 300px;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .about-content h2, .basic-info h2 {
+        color: #09c;
+        font-size: 2rem;
+        text-transform: capitalize;
+        margin-bottom: 20px;
+        cursor: default;
+    }
+    .about-content{
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.about-content.show{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+    .about-content p {
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        cursor: default;
+    }
+
+    .basic-info ul {
+        list-style: none;
+        padding: 0;
+        cursor: default;
+    }
+
+    .basic-info li {
+        font-size: 20px;
+        margin: 20px 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .basic-info i {
+        margin-right: 10px;
+        color: #09c;
+    }
+
+    @media (max-width: 768px) {
+        .about-container {
+            flex-direction: column;
+            padding: 40px 20px;
+        }
+
+        .about-content, .basic-info {
+            width: 100%;
+        }
+    }
+
+    .visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <section class="about-container" id="about-container">
+    <div class="about-content">
+        <h2>À propos</h2>
+        <p>Salut 👋, je suis ALI, étudiant en 2ème année de licence pro en développement web et mobile, spécialisé en Full-stack. J'ai acquis de l'expérience à travers des projets académiques et personnels, en créant des interfaces utilisateur attrayantes et des fonctionnalités serveur robustes. Passionné par l'innovation, je relève des défis techniques pour concevoir des solutions adaptées aux besoins des utilisateurs.</p>
+        <p>Je crois en l'exploration constante de nouvelles technologies et en la polyvalence.</p>
+    </div>
+    <div class="basic-info">
+        <h2>Informations de base</h2>
+        <ul>
+            <li><i class="fas fa-calendar"></i> 31 Décembre 2005</li>
+            <li><i class="fas fa-comment"></i> gregoireatg8@gmail.com</li>
+            <li><i class="fas fa-phone"></i> +228 70-44-81-06</li>
+            <li><i class="fas fa-map-marker-alt"></i> Lomé, Togo</li>
+            <li><i class="fas fa-globe"></i> Français, Anglais, Espagnol</li>
+        </ul>
+    </div>
+  </section>
+
+  <script>
+   document.addEventListener("DOMContentLoaded", function(){
+    const about = document.querySelector('.about-content');
+
+    const visible = new IntersectionObserver(entries =>{
+        entries.forEach(entry =>{
+            if(entry.isIntersecting){
+                entries.target.classList.toggle("show");
+            }else{
+                entries.target.classList.remove("show");
+            }
+        });
+    }, {threshold: 0.2});
+
+    about.forEach(vi =>{
+        visible.observe(vi);
+    })
+
+})
+
+  </script>
+</body>
+</html>
